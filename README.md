@@ -10,9 +10,19 @@ now do
 
 npm i
 
-then 
+npm i pm2 -g
 
-node index.js
+then to start it do
+
+pm2 start index.js
+
+to stop it do
+
+pm2 stop index.js
+
+or
+
+pm2 stop all
 
 
 then you can use altbotv3
