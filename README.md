@@ -1,28 +1,16 @@
 # web
-Requirements 
-1. Node JS
+Download NodeJS
+https://nodejs.org/en/download/current/
 
-To install nodejs go to https://nodejs.org/en/download/
-
-once you downlaod the webserver go to the folder and open up cmd prompt for that dirictory 
-
-now do
-
+Clone the repository https://github.com/px1club/web/blob/main/index.js
+Unzip the folder
+Go to the folder
+Open up command prompt in the directory
+do
 npm i
-
 npm i pm2 -g
 
-then to start it do
-
-pm2 start index.js
-
-to stop it do
-
-pm2 stop index.js
-
-or
-
-pm2 stop all
+to start it do pm2 start index.js
 
 
-then you can use altbotv3
+to stop it do pm2 stop 0
