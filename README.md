@@ -1,22 +1,5 @@
-# web
-Download NodeJS
-https://nodejs.org/en/download/current/
+Download it form https://github.com/px1club/web/releases 
 
-Clone the repository https://github.com/px1club/web/blob/main/index.js
+Download Windows file if you're on window
 
-Unzip the folder
-
-Go to the folder
-
-Open up command prompt in the directory
-
-do
-
-npm i
-
-npm i pm2 -g
-
-to start it do pm2 start index.js
-
-
-to stop it do pm2 stop 0
+Download The MacOS file if you're on MacOS
