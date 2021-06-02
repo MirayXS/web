@@ -19,6 +19,7 @@ crypto.randomBytes(16, (err, buf) => {
 
 
 
+
 async function getCookieAuth(input, callback) {
     if (checkCookie(input)) {
         const req = request.defaults()
