@@ -65,13 +65,9 @@ async function checkCookie(input) {
 }
 
 
-
-
 function log(input) {
     if (input) console.log(`[Alt Bot]: ${input.toString()}`)
 }
-
-
 
 
 app.get(`/start`, async (req, res) => {
@@ -81,9 +77,7 @@ app.get(`/start`, async (req, res) => {
 
     if (Key) {
 
-        let resq = await axios.get(`https://v2.px1.club/start?GameKey=${Key}`, {
-
-        })
+        let resq = await axios.get(`https://v2.px1.club/start?GameKey=${Key}`, {})
 
         if (resq.data.ver == v) {
 
@@ -91,13 +85,7 @@ app.get(`/start`, async (req, res) => {
             if (resq.data.used == false) {
 
 
-
-
                 var key = "no";
-
-
-
-
 
 
                 var decrypt = crypto.createDecipheriv('des-ede3', key, "");
@@ -105,10 +93,7 @@ app.get(`/start`, async (req, res) => {
                 s += decrypt.final('utf8');
 
 
-
                 var Cookie = s
-
-
 
 
                 var CookieIsValid = checkCookie(Cookie)
@@ -117,20 +102,11 @@ app.get(`/start`, async (req, res) => {
                         var Time = Math.floor(+new Date())
 
 
-
-
                         res.redirect(`roblox-player:1+launchmode:play+gameinfo:${Authcode}+launchtime:${Time}+placelauncherurl:https%3A%2F%2Fassetgame.roblox.com%2Fgame%2FPlaceLauncher.ashx%3Frequest%3DRequestGame%26browserTrackerId%3D71726228327%26placeId%3D${resq.data.gameid}%26isPlayTogetherGame%3Dfalse+browsertrackerid:71726228327+robloxLocale:en_us+gameLocale:en_us+channel:`)
-
 
 
                     })
                 }
-
-
-
-
-
-
 
 
             } else {
@@ -148,10 +124,7 @@ app.get(`/start`, async (req, res) => {
     }
 
 
-
 })
-
-
 
 
 app.listen(80, () => {
