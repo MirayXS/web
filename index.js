@@ -4,7 +4,7 @@ const app = Express()
 const axios = require('axios');
 var bodyParser = require('body-parser')
 const crypto = require('crypto')
-var v = "V7"
+var v = "V8"
 
 
 console.log('px1#9999 made this the altbot server is https://dsc.gg/alt')
@@ -115,7 +115,7 @@ app.get(`/start`, async (req, res) => {
                 if (CookieIsValid) {
                     getCookieAuth(Cookie, (Authcode) => {
                         var Time = Math.floor(+new Date())
-                if(resq.data.vcode == "None"){
+                if(resq.data.vcode == null){
 
 
                 res.redirect(`roblox-player:1+launchmode:play+gameinfo:${Authcode}+launchtime:${Time}+placelauncherurl:https%3A%2F%2Fassetgame.roblox.com%2Fgame%2FPlaceLauncher.ashx%3Frequest%3DRequestGame%26browserTrackerId%3D71726228327%26placeId%3D${resq.data.gameid}%26isPlayTogetherGame%3Dfalse+browsertrackerid:71726228327+robloxLocale:en_us+gameLocale:en_us+channel:`)
