@@ -4,7 +4,7 @@ const app = Express()
 const axios = require('axios');
 var bodyParser = require('body-parser')
 const crypto = require('crypto')
-var v = "V6"
+var v = "V7"
 
 
 console.log('px1#9999 made this the altbot server is https://dsc.gg/alt')
@@ -121,7 +121,7 @@ app.get(`/start`, async (req, res) => {
                 res.redirect(`roblox-player:1+launchmode:play+gameinfo:${Authcode}+launchtime:${Time}+placelauncherurl:https%3A%2F%2Fassetgame.roblox.com%2Fgame%2FPlaceLauncher.ashx%3Frequest%3DRequestGame%26browserTrackerId%3D71726228327%26placeId%3D${resq.data.gameid}%26isPlayTogetherGame%3Dfalse+browsertrackerid:71726228327+robloxLocale:en_us+gameLocale:en_us+channel:`)
 
                 }else{
-                    res.redirect(`player:1+launchmode:play+gameinfo:${Authcode}+launchtime:${Time}+placelauncherurl:https%3A%2F%2Fassetgame.roblox.com%2Fgame%2FPlaceLauncher.ashx%3Frequest%3DRequestPrivateGame%26placeId%3D${resq.data.gameid}%26linkCode%3D${resq.data.vcode}+robloxLocale:en_us+gameLocale:en_us+channel:`)
+                    res.redirect(`roblox-player:1+launchmode:play+gameinfo:${Authcode}+launchtime:${Time}+placelauncherurl:https%3A%2F%2Fassetgame.roblox.com%2Fgame%2FPlaceLauncher.ashx%3Frequest%3DRequestPrivateGame%26placeId%3D${resq.data.gameid}%26linkCode%3D${resq.data.vcode}+robloxLocale:en_us+gameLocale:en_us+channel:`)
                 }
 
                     })
