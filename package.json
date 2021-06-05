@@ -22,6 +22,7 @@
     "express": "^4.17.1",
     "hwid": "^0.4.0",
     "mysql": "^2.18.1",
+    "node-machine-id": "^1.1.12",
     "request": "^2.88.2"
   },
   "devDependencies": {

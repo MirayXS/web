@@ -4,3 +4,7 @@ node_modules/*
 AltBotV3.js
 test/*
 AltBotV3.exe
+package-lock.json
+package.json
+package-lock.json
+*.json
