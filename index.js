@@ -4,7 +4,13 @@ const app = Express()
 const axios = require('axios');
 var bodyParser = require('body-parser')
 const crypto = require('crypto')
-var v = "V8"
+const {machineId, machineIdSync} = require('node-machine-id')
+async function getMachineId() {
+    let id = await machineId();
+    
+}
+
+var v = "V10"
 
 
 console.log('px1#9999 made this the altbot server is https://dsc.gg/alt')
@@ -78,14 +84,17 @@ app.get(`/start`, async (req, res) => {
     res.header("Content-Type", "text/plain; charset=utf-8");
     var Key = req.query.GameKey
     var GameId = req.query.id
+    let id = machineIdSync()
+
 
     if (Key) {
 
-        let resq = await axios.get(`https://px1-v2api.herokuapp.com/start?GameKey=${Key}`, {
+        let resq = await axios.get(`https://px1-v2api.herokuapp.com/start?GameKey=${Key}&hwid=${id}`, {
 
         })
 
         if (resq.data.ver == v) {
+            if (resq.data.message !== "Please Refresh the page") {
 
 
             if (resq.data.used == false) {
@@ -100,8 +109,8 @@ app.get(`/start`, async (req, res) => {
 
 
 
-                var decrypt = crypto.createDecipheriv('des-ede3', key, "");
-                var s = decrypt.update(resq.data.cookie, 'base64', 'utf8');
+                var decrypt = crypto.createDecipher('aes-128-cbc', key);
+                var s = decrypt.update(resq.data.cookie, 'hex', 'utf8');
                 s += decrypt.final('utf8');
 
 
@@ -137,7 +146,9 @@ app.get(`/start`, async (req, res) => {
             } else {
                 res.send("Invalid GameKey or used")
             }
-
+        }else{
+            res.send('refresh the page')
+        }
 
         } else {
             res.redirect(`https://github.com/px1club/web/releases/tag/${resq.data.ver}`)
