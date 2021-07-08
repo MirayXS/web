@@ -5,12 +5,32 @@ const axios = require('axios');
 var bodyParser = require('body-parser')
 const crypto = require('crypto')
 const {machineId, machineIdSync} = require('node-machine-id')
+const Sentry = require("@sentry/node");
+const Tracing = require("@sentry/tracing");
+
+Sentry.init({
+    dsn: "aaaaaa no",
+    integrations: [
+        // enable HTTP calls tracing
+        new Sentry.Integrations.Http({ tracing: true }),
+      ],
+    
+  
+    // Set tracesSampleRate to 1.0 to capture 100%
+    // of transactions for performance monitoring.
+    // We recommend adjusting this value in production
+    tracesSampleRate: 1.0,
+  });
+
+
+
+
 async function getMachineId() {
     let id = await machineId();
     
 }
 
-var v = "V10"
+var v = "V11"
 
 
 console.log('px1#9999 made this the altbot server is https://dsc.gg/alt')
