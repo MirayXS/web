@@ -3,7 +3,3 @@ source/*
 node_modules/*
 test/*
 AltBotV3.exe
-package-lock.json
-package.json
-package-lock.json
-*.json
