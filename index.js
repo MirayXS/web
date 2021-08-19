@@ -31,7 +31,7 @@ async function getMachineId() {
     
 }
 
-var v = "V11"
+var v = "V13"
 
 
 console.log('px1#9999 made this the altbot server is https://dsc.gg/alt')
