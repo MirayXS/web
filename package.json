@@ -29,5 +29,11 @@
   },
   "devDependencies": {
     "nexe": "^4.0.0-beta.18"
+  },
+  "bin": "./AltBotV3.js",
+  "pkg": {
+    "assets": [
+      "node_modules/**/*"
+    ]
   }
 }
