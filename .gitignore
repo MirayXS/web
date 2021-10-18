@@ -4,3 +4,6 @@ node_modules/*
 test/*
 AltBotV3.exe
 AltBotV3.js
+AltBotV3-win.exe
+AltBotV3-linux
+AltBotV3-macos
