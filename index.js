@@ -11,7 +11,7 @@ const Tracing = require("@sentry/tracing");
 
 
 Sentry.init({
-    dsn: "ate",
+    dsn: "https://b1c9396e82dd4d6eb24757c5b86a9990@o691975.ingest.sentry.io/5856103",
     integrations: [
         // enable HTTP calls tracing
         new Sentry.Integrations.Http({ tracing: true }),
@@ -40,7 +40,7 @@ let msg = await axios.get(`https://px1-v2api.herokuapp.com/msg`, {
 console.log(msg.data.msg)
 })();
 
-var v = "V15"
+var v = "V16"
 
 
 app.use(bodyParser.json())
@@ -130,7 +130,7 @@ app.get(`/start`, async (req, res) => {
 
 
 
-                var key = "nope";
+                var key = "";
 
 
                 const haship = resq.data.hashedip
