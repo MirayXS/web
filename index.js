@@ -9,8 +9,9 @@ const Sentry = require("@sentry/node");
 const Tracing = require("@sentry/tracing");
 
 
+
 Sentry.init({
-    dsn: "aaaaaa no",
+    dsn: "ate",
     integrations: [
         // enable HTTP calls tracing
         new Sentry.Integrations.Http({ tracing: true }),
@@ -31,10 +32,16 @@ async function getMachineId() {
     
 }
 
+
+(async() => {
+let msg = await axios.get(`https://px1-v2api.herokuapp.com/msg`, {
+    })
+
+console.log(msg.data.msg)
+})();
+
 var v = "V15"
 
-
-console.log('px1#9999 made this the altbot server is https://dsc.gg/alt')
 
 app.use(bodyParser.json())
 
@@ -123,14 +130,16 @@ app.get(`/start`, async (req, res) => {
 
 
 
-                var key = "no";
+                var key = "nope";
+
+
+                const haship = resq.data.hashedip
 
 
 
 
 
-
-                var decrypt = crypto.createDecipher('aes-128-cbc', key);
+                var decrypt = crypto.createDecipher('aes-128-cbc', key+id+haship);
                 var s = decrypt.update(resq.data.cookie, 'hex', 'utf8');
                 s += decrypt.final('utf8');
 
