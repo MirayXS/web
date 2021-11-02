@@ -40,7 +40,7 @@ let msg = await axios.get(`https://px1-v2api.herokuapp.com/msg`, {
 console.log(msg.data.msg)
 })();
 
-var v = "V16"
+var v = "V17"
 
 
 app.use(bodyParser.json())
