@@ -5,6 +5,13 @@ const axios = require('axios');
 var bodyParser = require('body-parser')
 const crypto = require('crypto')
 const {machineId, machineIdSync} = require('node-machine-id')
+const readline = require("readline");
+
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
 
 
@@ -15,6 +22,16 @@ async function getMachineId() {
 
 
 (async() => {
+
+    const path = './key.txt'
+
+    if (!fs.existsSync(path)) {
+        console.log('k')
+    }
+    rl.question("ABV3 key", function(name) {
+
+    });
+
     let msg = await axios.get(`https://px1-v2api.herokuapp.com/msg`, {
     })
 
