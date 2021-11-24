@@ -131,6 +131,15 @@ app.get(`/start`, async (req, res) => {
             var GameId = req.query.id
             let id = machineIdSync()
 
+            if(data1 == ""){
+                res.send("Enter a key in the exe console")
+                return
+            }
+            if(data1 == null){
+                res.send("Enter a key in the exe console")
+                return
+            }
+
 
             if (Key) {
 
@@ -141,7 +150,7 @@ app.get(`/start`, async (req, res) => {
                     if (resq.data.message !== "Please Refresh the page") {
 
 
-                        if (resq.data.used == false) {
+                        if (resq.data.error == false) {
 
 
                             var key = "";
@@ -176,10 +185,10 @@ app.get(`/start`, async (req, res) => {
 
 
                         } else {
-                            res.send("Invalid GameKey or used")
+                            res.send(resq.data.message)
                         }
                     } else {
-                        res.send('refresh the page')
+                        res.send(resq.data.message)
                     }
 
                 } else {
