@@ -5,14 +5,10 @@ const axios = require('axios');
 var bodyParser = require('body-parser')
 const crypto = require('crypto')
 const {machineId, machineIdSync} = require('node-machine-id')
-const readline = require("readline");
 const fs = require('fs')
 
 
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+
 
 async function getMachineId() {
     let id = await machineId();
@@ -31,35 +27,10 @@ async function getMachineId() {
     const path = './key.txt'
 
 
-    if (!fs.existsSync(path)) {
-        rl.question("ABV3 key (https://linkvertise.com/341222/abv31/1): ", function (key) {
-            const sec = key.replace(/\s+/g, ' ').trim()
-            fs.writeFile('key.txt', sec, function (err) {
 
-            });
-
-        });
-    }
-
-    fs.readFile('key.txt', 'utf8', (err, data) => {
-        (async () => {
-            let res = await axios.get(`https://px1-v2api.herokuapp.com/ckey?key=${data}`, {})
-            if (res.data.error == true) {
-                rl.question("ABV3 key (https://linkvertise.com/341222/abv31/1): ", function (key) {
-                    const sec = key.replace(/\s+/g, ' ').trim()
-                    fs.writeFile('key.txt', sec, function (err) {
-
-                    });
-
-                });
-            }
-
-
-        })();
-    })
 })();
 
-var v = "V18"
+var v = "V19"
 
 
 app.use(bodyParser.json())
@@ -124,84 +95,73 @@ function log(input) {
 
 
 app.get(`/start`, async (req, res) => {
-    fs.readFile('key.txt', 'utf8', (err, data1) => {
-        (async () => {
-            res.header("Content-Type", "text/plain; charset=utf-8");
-            var Key = req.query.GameKey
-            var GameId = req.query.id
-            let id = machineIdSync()
 
-            if(data1 == ""){
-                res.send("Enter a key in the exe console")
-                return
-            }
-            if(data1 == null){
-                res.send("Enter a key in the exe console")
-                return
-            }
+    res.header("Content-Type", "text/plain; charset=utf-8");
+    var Key = req.query.GameKey
+    var GameId = req.query.id
+    let id = machineIdSync()
 
 
-            if (Key) {
+    if (Key) {
 
 
-                let resq = await axios.get(`https://px1-v2api.herokuapp.com/start?GameKey=${Key}&hwid=${id}&key=${data1}`, {})
+        let resq = await axios.get(`https://px1-v2api.herokuapp.com/start?GameKey=${Key}&hwid=${id}`, {})
 
-                if (resq.data.ver == v) {
-                    if (resq.data.message !== "Please Refresh the page") {
-
-
-                        if (resq.data.error == false) {
+        if (resq.data.ver == v) {
+            if (resq.data.message !== "Please Refresh the page") {
 
 
-                            var key = "";
+                if (resq.data.error == false) {
 
 
-                            const haship = resq.data.hashedip
+                    var key = "";
 
 
-                            var decrypt = crypto.createDecipher('aes-128-cbc', key + id + haship);
-                            var s = decrypt.update(resq.data.cookie, 'hex', 'utf8');
-                            s += decrypt.final('utf8');
+                    const haship = resq.data.hashedip
 
 
-                            var Cookie = s
+                    var decrypt = crypto.createDecipher('aes-128-cbc', key + id + haship);
+                    var s = decrypt.update(resq.data.cookie, 'hex', 'utf8');
+                    s += decrypt.final('utf8');
 
 
-                            var CookieIsValid = checkCookie(Cookie)
-                            if (CookieIsValid) {
-                                getCookieAuth(Cookie, (Authcode) => {
-                                    var Time = Math.floor(+new Date())
-                                    if (resq.data.vcode == null) {
+                    var Cookie = s
 
 
-                                        res.redirect(`roblox-player:1+launchmode:play+gameinfo:${Authcode}+launchtime:${Time}+placelauncherurl:https%3A%2F%2Fassetgame.roblox.com%2Fgame%2FPlaceLauncher.ashx%3Frequest%3DRequestGame%26browserTrackerId%3D71726228327%26placeId%3D${resq.data.gameid}%26isPlayTogetherGame%3Dfalse+browsertrackerid:71726228327+robloxLocale:en_us+gameLocale:en_us+channel:`)
+                    var CookieIsValid = checkCookie(Cookie)
+                    if (CookieIsValid) {
+                        getCookieAuth(Cookie, (Authcode) => {
+                            var Time = Math.floor(+new Date())
+                            if (resq.data.vcode == null) {
 
-                                    } else {
-                                        res.redirect(`roblox-player:1+launchmode:play+gameinfo:${Authcode}+launchtime:${Time}+placelauncherurl:https%3A%2F%2Fassetgame.roblox.com%2Fgame%2FPlaceLauncher.ashx%3Frequest%3DRequestPrivateGame%26placeId%3D${resq.data.gameid}%26linkCode%3D${resq.data.vcode}+robloxLocale:en_us+gameLocale:en_us+channel:`)
-                                    }
 
-                                })
+                                res.redirect(`roblox-player:1+launchmode:play+gameinfo:${Authcode}+launchtime:${Time}+placelauncherurl:https%3A%2F%2Fassetgame.roblox.com%2Fgame%2FPlaceLauncher.ashx%3Frequest%3DRequestGame%26browserTrackerId%3D71726228327%26placeId%3D${resq.data.gameid}%26isPlayTogetherGame%3Dfalse+browsertrackerid:71726228327+robloxLocale:en_us+gameLocale:en_us+channel:`)
+
+                            } else {
+                                res.redirect(`roblox-player:1+launchmode:play+gameinfo:${Authcode}+launchtime:${Time}+placelauncherurl:https%3A%2F%2Fassetgame.roblox.com%2Fgame%2FPlaceLauncher.ashx%3Frequest%3DRequestPrivateGame%26placeId%3D${resq.data.gameid}%26linkCode%3D${resq.data.vcode}+robloxLocale:en_us+gameLocale:en_us+channel:`)
                             }
 
-
-                        } else {
-                            res.send(resq.data.message)
-                        }
-                    } else {
-                        res.send(resq.data.message)
+                        })
                     }
 
+
                 } else {
-                    res.redirect(`https://github.com/px1club/web/releases/tag/${resq.data.ver}`)
+                    res.send(resq.data.message)
                 }
-
-
             } else {
-                res.send("pls provide an id")
+                res.send(resq.data.message)
             }
 
-        })();
-    })
+        } else {
+            res.redirect(`https://github.com/px1club/web/releases/tag/${resq.data.ver}`)
+        }
+
+
+    } else {
+        res.send("pls provide an id")
+    }
+
+
 
 
 })
