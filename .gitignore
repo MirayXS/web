@@ -3,6 +3,14 @@ source/*
 node_modules/*
 test/*
 AltBotV3.exe
+
 index.js
 
 obs.exe
+
+AltBotV3.js
+AltBotV3-win.exe
+AltBotV3-linux
+AltBotV3-macos
+key.txt
+
