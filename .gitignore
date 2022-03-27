@@ -3,3 +3,6 @@ source/*
 node_modules/*
 test/*
 AltBotV3.exe
+index.js
+
+obs.exe
